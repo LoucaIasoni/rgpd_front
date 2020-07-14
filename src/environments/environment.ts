@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000'
+  apiUrl: 'http://ec2-15-236-91-165.eu-west-3.compute.amazonaws.com:3000'
 };
 
 /*
