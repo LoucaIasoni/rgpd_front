@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfessionService } from 'src/app/services/profession.service';
+import { RgpdService } from 'src/app/services/rgpd.service';
 
 @Component({
   selector: 'app-home',
@@ -11,9 +12,11 @@ export class HomeComponent implements OnInit {
 
     professions: any;
     displayProfession = false;
+    rgpds: any;
     displayRGPD = false;
     nameProfession = '';
     rgpdAdd = {
+        title: '',
         id_profession: '',
         id_categorie: ''
     }
@@ -21,12 +24,14 @@ export class HomeComponent implements OnInit {
 
   constructor(
       private router: Router,
-      private professionService: ProfessionService
+      private professionService: ProfessionService,
+      private rgpdService: RgpdService
   ) {
   }
 
   async ngOnInit() {
     this.professions = await this.professionService.getAll().toPromise();
+    this.rgpds = await this.rgpdService.getAll().toPromise();
   }
 
   ajouterProfession() {
@@ -57,6 +62,24 @@ export class HomeComponent implements OnInit {
         }
       );
   }
+
+
+  saveRgpd() {
+    this.rgpdService.create(this.rgpdAdd).subscribe(
+        async (response) => {
+            this.rgpdAdd = {
+                title: '',
+                id_profession: '',
+                id_categorie: ''
+            }
+            this.rgpds = await this.rgpdService.getAll().toPromise();
+            this.cancelEverything();
+        },
+        (error) => {
+        }
+        );
+    }
+
 
   deleteProfession(id) {
     this.professionService.delete(id).subscribe(

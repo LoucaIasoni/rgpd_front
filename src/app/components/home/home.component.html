@@ -59,10 +59,10 @@
                   <th style="padding: 10px;">Profession</th>
                   <th style="padding: 10px;">Actions</th>
                 </tr>
-                <tr>
-                  <td style="padding: 10px;">Changer de mot de passe tout les 15 jours</td>
-                  <td style="padding: 10px;">6</td>
-                  <td style="padding: 10px;">Docteur</td>
+                <tr *ngFor="let rgpd of rgpds"> 
+                  <td style="padding: 10px;">{{rgpd.title}}</td>
+                  <td style="padding: 10px;">{{rgpd.name}}</td>
+                  <td style="padding: 10px;">{{rgpd.id_profession}}</td>
                   <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteProfession(profession.id)" style="font-weight: bold; color: red;">x</span></td>
                 </tr>
               </table>
@@ -110,7 +110,7 @@
                 </div>
                 
                 <div style="display: inline-block; float: right; margin-top: 30px">
-                    <button  style="width: 150px;" class="login100-form-btn" (click)="saveProfession()">
+                    <button  style="width: 150px;" class="login100-form-btn" (click)="saveRgpd()">
                         Sauvegarder
                     </button>
                     <br>
@@ -121,7 +121,7 @@
 
                 <div style="margin-top: 20px; width: 460px">
                     <div class="wrap-input100 validate-input">
-                        <input class="input100" type="text" [(ngModel)]="nameProfession" placeholder="Titre">
+                        <input class="input100" type="text" [(ngModel)]="rgpdAdd.title" placeholder="Titre">
                         <span class="focus-input100"></span>
                     </div>
                 </div>
@@ -136,9 +136,9 @@
                         font-size: 16px;
                         border: none;
                         cursor: pointer;
-                        border-radius: 32px;" id="id_company" name="id_company" class="form-control custom-select" [ngModel]="rgpdAdd.id_profession">
+                        border-radius: 32px;" id="id_company" name="id_company" class="form-control custom-select" [(ngModel)]="rgpdAdd.id_profession">
                             <option></option>
-                            <option *ngFor="let profession of professions" [ngValue]="profession.id">{{profession.name}}</option>
+                            <option *ngFor="let profession of professions" [value]="profession.id">{{profession.name}}</option>
                         </select>
                     </div>
                 </div>
@@ -154,9 +154,9 @@
                         font-size: 16px;
                         border: none;
                         cursor: pointer;
-                        border-radius: 32px;" id="id_company" name="id_company" class="form-control custom-select" [ngModel]="rgpdAdd.id_categorie">
+                        border-radius: 32px;" id="id_company" name="id_company" class="form-control custom-select" [(ngModel)]="rgpdAdd.id_categorie">
                             <option></option>
-                            <option *ngFor="let categorie of categories" [ngValue]="categorie">{{categorie}}</option>
+                            <option *ngFor="let categorie of categories" [value]="categorie">{{categorie}}</option>
                         </select>
                     </div>
                 </div>
