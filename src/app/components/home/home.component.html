@@ -1,8 +1,70 @@
 <div class="limiter">
     <div class="container-login100">
-        <div class="wrap-login100">
+        <div style="width:1000px; margin:auto; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
+
+            <div style="margin-top: 30px;">
+                <div style="display: inline-block;">
+                    <h1>Professions</h1>
+                    <p>Ajouter une nouvelle profession pour classer vos règles RGPD</p>
+                </div>
+                
+                <div style="display: inline-block; float: right; margin-top: 30px">
+                    <button  style="width: 130px;" class="login100-form-btn" (click)="ajouterProfession">
+                        Ajouter
+                    </button>
+                </div>
+            </div>
             
+            <div style="margin-top: 40px;">
+                <div style="display: inline-block;">
+                    <h1>Règles RGPD</h1>
+                    <p>Ajouter une nouvelle règle RGPD</p>
+                </div>
+                
+                <div style="display: inline-block; float: right; margin-top: 30px">
+                    <button  style="width: 130px;" class="login100-form-btn" (click)="ajouterProfession">
+                        Ajouter
+                    </button>
+                </div>
+            </div>            
         </div>
+
+        <div style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 0px; margin-bottom: 0px">
+            <div style="margin-bottom: 15px;">
+                <h2>Liste des professions</h2>
+            </div>
+
+            <table id="t01">
+                <tr>
+                  <th style="padding: 10px;">Nom</th>
+                </tr>
+                <tr>
+                  <td style="padding: 10px;">Docteur</td>
+                </tr>
+              </table>
+        </div>
+
+
+        <div style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 10px">
+            <div style="margin-bottom: 15px;">
+                <h2>Liste des règles RGPD</h2>
+            </div>
+
+            <table id="t01">
+                <tr>
+                  <th style="padding: 10px;">Intitulé</th>
+                  <th style="padding: 10px;">Catégorie</th>
+                  <th style="padding: 10px;">Profession</th>
+                </tr>
+                <tr>
+                  <td style="padding: 10px;">Changer de mot de passe tout les 15 jours</td>
+                  <td style="padding: 10px;">6</td>
+                  <td style="padding: 10px;">Docteur</td>
+                </tr>
+              </table>
+        </div>
+
+
+        
     </div>
 </div>
-
