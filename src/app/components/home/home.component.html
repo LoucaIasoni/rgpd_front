@@ -14,7 +14,18 @@
                     </button>
                 </div>
             </div>
-            
+            <div  style="margin-top: 40px;">
+                <div style="display: inline-block;">
+                    <h1>Catégorie RGPD</h1>
+                    <p>Ajouter une catégorie RGPD</p>
+                </div>
+                
+                <div style="display: inline-block; float: right; margin-top: 30px">
+                    <button  style="width: 130px;" class="login100-form-btn" (click)="ajouterCategorie()">
+                        Ajouter
+                    </button>
+                </div>
+            </div>
             <div  style="margin-top: 40px;">
                 <div style="display: inline-block;">
                     <h1>Règles RGPD</h1>
@@ -26,10 +37,12 @@
                         Ajouter
                     </button>
                 </div>
-            </div>            
+            </div>   
+            
+           
         </div>
 
-        <div *ngIf="!displayProfession && !displayRGPD" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 0px; margin-bottom: 0px">
+        <div *ngIf="!displayProfession && !displayRGPD && !displayCategorie" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 0px; margin-bottom: 0px">
             <div style="margin-bottom: 15px;">
                 <h2 style="text-decoration: underline;">Liste des professions</h2>
             </div>
@@ -47,7 +60,7 @@
         </div>
 
 
-        <div *ngIf="!displayProfession && !displayRGPD" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 10px">
+        <div *ngIf="!displayProfession && !displayRGPD && !displayCategorie" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 10px">
             <div style="margin-bottom: 15px;">
                 <h2 style="text-decoration: underline;">Liste des règles RGPD</h2>
             </div>
@@ -63,14 +76,30 @@
                   <td style="padding: 10px;">{{rgpd.title}}</td>
                   <td style="padding: 10px;">{{rgpd.name}}</td>
                   <td style="padding: 10px;">{{rgpd.id_profession}}</td>
-                  <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteProfession(rgpd.id)" style="font-weight: bold; color: red;">x</span></td>
+                  <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteregle(rgpd.id)" style="font-weight: bold; color: red;">x</span></td>
+                </tr>
+              </table>
+        </div>
+
+        <div *ngIf="!displayProfession && !displayRGPD && !displayCategorie" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 0px; margin-bottom: 0px">
+            <div style="margin-bottom: 15px;">
+                <h2 style="text-decoration: underline;">Liste des Catégories</h2>
+            </div>
+
+            <table id="t01">
+                <tr>
+                  <th style="padding: 10px;">Nom</th>
+                  <th style="padding: 10px;">Actions</th>
+                </tr>
+                <tr *ngFor="let categorie of categories" >
+                  <td style="padding: 10px;">{{categorie.name}}</td>
+                  <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteCategorie(categorie.id)" style="font-weight: bold; color: red;">x</span></td>
                 </tr>
               </table>
         </div>
 
 
-
-        <div *ngIf="displayProfession && !displayRGPD" style="width:1000px; margin:auto; margin-top: 0px; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
+        <div *ngIf="displayProfession && !displayRGPD && !displayCategorie" style="width:1000px; margin:auto; margin-top: 0px; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
 
             <div style="margin-top: 30px;">
                 <div style="display: inline-block;">
@@ -100,8 +129,37 @@
                       
         </div>
 
+        <div *ngIf="displayCategorie && !displayRGPD && !displayProfession" style="width:1000px; margin:auto; margin-top: 0px; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
 
-        <div *ngIf="!displayProfession && displayRGPD" style="width:1000px; margin:auto; margin-top: 0px; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
+            <div style="margin-top: 30px;">
+                <div style="display: inline-block;">
+                    <h1>Categorie</h1>
+                    <p>Ajouter une nouvelle catégorie pour classer vos règles RGPD</p>
+                </div>
+                
+                <div style="display: inline-block; float: right; margin-top: 30px">
+                    <button  style="width: 150px;" class="login100-form-btn" (click)="saveCategorie()">
+                        Sauvegarder
+                    </button>
+                    <br>
+                    <button  style="width: 150px; background: #ff2626 !important;" class="login100-form-btn" (click)="cancelEverything()">
+                        Annuler
+                    </button>
+                </div>
+
+                <div style="margin-top: 20px; width: 50%;">
+                    <div class="wrap-input100 validate-input">
+                        <input class="input100" type="text" [(ngModel)]="nameCategorie" placeholder="Nom">
+                        <span class="focus-input100"></span>
+                    </div>
+                </div>
+
+               
+            </div>
+                      
+        </div>
+
+        <div *ngIf="!displayProfession && displayRGPD && !displayCategorie" style="width:1000px; margin:auto; margin-top: 0px; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
 
             <div style="margin-top: 30px;">
                 <div style="display: inline-block;">

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RgpdService } from 'src/app/services/rgpd.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
@@ -14,24 +15,28 @@ export class HomeComponent implements OnInit {
     displayProfession = false;
     rgpds: any;
     displayRGPD = false;
+    displayCategorie = false;
     nameProfession = '';
     rgpdAdd = {
         title: '',
         id_profession: '',
         id_categorie: ''
     }
-    categories = [1, 2, 3, 4, 5, 6]
+    nameCategorie = '';
+    categories : any;
 
   constructor(
       private router: Router,
       private professionService: ProfessionService,
       private rgpdService: RgpdService,
+      private categoriesService: CategoriesService,
       private toastr: ToastrService
   ) {
   }
 
   async ngOnInit() {
     this.professions = await this.professionService.getAll().toPromise();
+    this.categories = await this.categoriesService.getAll().toPromise();
     this.rgpds = await this.rgpdService.getAll().toPromise();
   }
 
@@ -42,11 +47,33 @@ export class HomeComponent implements OnInit {
   ajouterRGPD() {
     this.displayRGPD = true;
   }
+  ajouterCategorie() {
+    this.displayCategorie = true;
+  }
 
   cancelEverything() {
     this.displayProfession = false;
     this.displayRGPD = false;
+    this.displayCategorie = false;
+
 }
+saveCategorie() {
+  let data = {
+      name: this.nameCategorie,
+  }
+this.categoriesService.create(data).subscribe(
+    async (response) => {
+        this.nameCategorie = '';
+        this.categories = await this.categoriesService.getAll().toPromise();
+        this.toastr.success("Catégorie ajoutée");
+        this.cancelEverything();
+    },
+    (error) => {
+    }
+  );
+}
+
+
 
   saveProfession() {
       let data = {
@@ -57,6 +84,7 @@ export class HomeComponent implements OnInit {
         async (response) => {
             this.nameProfession = '';
             this.professions = await this.professionService.getAll().toPromise();
+            this.toastr.success("Profession ajoutée");
             this.cancelEverything();
         },
         (error) => {
@@ -74,6 +102,7 @@ export class HomeComponent implements OnInit {
                 id_categorie: ''
             }
             this.rgpds = await this.rgpdService.getAll().toPromise();
+            this.toastr.success("Règle ajoutée");
             this.cancelEverything();
         },
         (error) => {
@@ -86,11 +115,35 @@ export class HomeComponent implements OnInit {
     this.professionService.delete(id).subscribe(
         async (response) => {
           this.toastr.success("Profession supprimée avec succés")
-          console.log("test");
+      
             this.professions = await this.professionService.getAll().toPromise();
         },
         (error) => {
         }
       );
   }
+  deleteregle(id) {
+    this.rgpdService.delete(id).subscribe(
+        async (response) => {
+          this.toastr.success("Rgpd supprimée avec succés")
+     
+          this.rgpds = await this.rgpdService.getAll().toPromise();
+        },
+        (error) => {
+        }
+      );
+  }
+
+  deleteCategorie(id) {
+    this.categoriesService.delete(id).subscribe(
+        async (response) => {
+          this.toastr.success("Catégorie supprimée avec succés")
+     
+          this.categories = await this.categoriesService.getAll().toPromise();
+        },
+        (error) => {
+        }
+      );
+  }
+  
 }
