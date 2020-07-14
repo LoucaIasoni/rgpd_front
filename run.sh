@@ -5,11 +5,10 @@ sudo -s
 git pull origin master
 
 npm install -g @angular/cli
- npm install --save --unsafe-perm
-
+npm install --save --unsafe-perm
 npm audit fix --force
 ng build --prod
 rm -rf ../BackRgpd/dist/*
-mv  build/* ../BackRgpd/dist/
+mv dist/rgpd-front/* ../BackRgpd/dist/
 exit
 EOF
