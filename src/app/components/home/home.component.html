@@ -47,17 +47,42 @@
                 <h2 style="text-decoration: underline;">Liste des professions</h2>
             </div>
 
-            <table id="t01">
+            <table class="table">
+                <thead class="thead-dark">
                 <tr>
                   <th style="padding: 10px;">Nom</th>
                   <th style="padding: 10px;">Actions</th>
                 </tr>
+            </thead>
+                <tbody>
                 <tr *ngFor="let profession of professions" >
                   <td style="padding: 10px;">{{profession.name}}</td>
                   <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteProfession(profession.id)" style="font-weight: bold; color: red;">x</span></td>
                 </tr>
+            </tbody>
               </table>
         </div>
+        <div *ngIf="!displayProfession && !displayRGPD && !displayCategorie" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 0px;  margin-top: 10px">
+            <div style="margin-bottom: 15px;">
+                <h2 style="text-decoration: underline;">Liste des Catégories</h2>
+            </div>
+
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                  <th style="padding: 10px;">Nom</th>
+                  <th style="padding: 10px;">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let categorie of categories" >
+                  <td style="padding: 10px;">{{categorie.name}}</td>
+                  <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteCategorie(categorie.id)" style="font-weight: bold; color: red;">x</span></td>
+                </tr>
+            </tbody>
+              </table>
+        </div>
+
 
 
         <div *ngIf="!displayProfession && !displayRGPD && !displayCategorie" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 10px">
@@ -65,40 +90,27 @@
                 <h2 style="text-decoration: underline;">Liste des règles RGPD</h2>
             </div>
 
-            <table id="t01">
+            <table class="table">
+                <thead class="thead-dark">
                 <tr>
                   <th style="padding: 10px;">Intitulé</th>
                   <th style="padding: 10px;">Catégorie</th>
                   <th style="padding: 10px;">Profession</th>
                   <th style="padding: 10px;">Actions</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr *ngFor="let rgpd of rgpds"> 
                   <td style="padding: 10px;">{{rgpd.title}}</td>
                   <td style="padding: 10px;">{{rgpd.name}}</td>
                   <td style="padding: 10px;">{{rgpd.id_profession}}</td>
                   <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteregle(rgpd.id)" style="font-weight: bold; color: red;">x</span></td>
                 </tr>
+            </tbody>
               </table>
         </div>
 
-        <div *ngIf="!displayProfession && !displayRGPD && !displayCategorie" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 0px; margin-bottom: 0px">
-            <div style="margin-bottom: 15px;">
-                <h2 style="text-decoration: underline;">Liste des Catégories</h2>
-            </div>
-
-            <table id="t01">
-                <tr>
-                  <th style="padding: 10px;">Nom</th>
-                  <th style="padding: 10px;">Actions</th>
-                </tr>
-                <tr *ngFor="let categorie of categories" >
-                  <td style="padding: 10px;">{{categorie.name}}</td>
-                  <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteCategorie(categorie.id)" style="font-weight: bold; color: red;">x</span></td>
-                </tr>
-              </table>
-        </div>
-
-
+      
         <div *ngIf="displayProfession && !displayRGPD && !displayCategorie" style="width:1000px; margin:auto; margin-top: 0px; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
 
             <div style="margin-top: 30px;">
