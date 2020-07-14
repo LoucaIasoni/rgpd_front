@@ -9,7 +9,7 @@ export class ProfessionService {
     constructor(private http: HttpClient) { }
 
     getAll() {
-        return this.http.get<any>(`${environment.apiUrl}/professions`);
+        return this.http.get<any>(`${environment.apiUrl}/professions/all`);
     }
 
     getById(id) {
@@ -17,7 +17,7 @@ export class ProfessionService {
     }
 
     create(company) {
-        return this.http.post<any>(`${environment.apiUrl}/professions`, company);
+        return this.http.post<any>(`${environment.apiUrl}/professions/new`, company);
     }
 
     delete(id) {
