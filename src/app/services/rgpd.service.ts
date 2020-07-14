@@ -21,7 +21,7 @@ export class RgpdService {
     }
 
     delete(id) {
-        return this.http.delete<any>(`${environment.apiUrl}/rgpd/${id}`);
+        return this.http.delete<any>(`${environment.apiUrl}/rgpd/delete/${id}`);
     }
 
     update(company, id) {

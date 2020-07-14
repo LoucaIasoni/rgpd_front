@@ -85,7 +85,8 @@ export class HomeComponent implements OnInit {
   deleteProfession(id) {
     this.professionService.delete(id).subscribe(
         async (response) => {
-          //this.toastr.success("Profession supprimée avec succés")
+          this.toastr.success("Profession supprimée avec succés")
+          console.log("test");
             this.professions = await this.professionService.getAll().toPromise();
         },
         (error) => {

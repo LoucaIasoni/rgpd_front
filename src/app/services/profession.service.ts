@@ -21,7 +21,7 @@ export class ProfessionService {
     }
 
     delete(id) {
-        return this.http.delete<any>(`${environment.apiUrl}/professions/${id}`);
+        return this.http.delete<any>(`${environment.apiUrl}/professions/delete/${id}`);
     }
 
     update(company, id) {
