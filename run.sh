@@ -6,7 +6,7 @@ git pull origin master
  npm install --save --unsafe-perm
 
 npm audit fix --force
-ng build
+ng build --prod
 rm -rf ../BackRgpd/dist/*
 mv  build/* ../BackRgpd/dist/
 exit
