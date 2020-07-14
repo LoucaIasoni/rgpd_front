@@ -23,5 +23,6 @@
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
     "experimentalDecorators": true,
+    "allowJs": true,
   }
 }
