@@ -1,6 +1,6 @@
 <div class="limiter">
     <div class="container-login100">
-        <div *ngIf="!displayProfession" style="width:1000px; margin:auto; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
+        <div *ngIf="!displayProfession && !displayRGPD" style="width:1000px; margin:auto; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
 
             <div style="margin-top: 30px;">
                 <div style="display: inline-block;">
@@ -22,14 +22,14 @@
                 </div>
                 
                 <div style="display: inline-block; float: right; margin-top: 30px">
-                    <button  style="width: 130px;" class="login100-form-btn" (click)="ajouterProfession">
+                    <button  style="width: 130px;" class="login100-form-btn" (click)="ajouterRGPD()">
                         Ajouter
                     </button>
                 </div>
             </div>            
         </div>
 
-        <div *ngIf="!displayProfession" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 0px; margin-bottom: 0px">
+        <div *ngIf="!displayProfession && !displayRGPD" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 0px; margin-bottom: 0px">
             <div style="margin-bottom: 15px;">
                 <h2 style="text-decoration: underline;">Liste des professions</h2>
             </div>
@@ -37,15 +37,17 @@
             <table id="t01">
                 <tr>
                   <th style="padding: 10px;">Nom</th>
+                  <th style="padding: 10px;">Actions</th>
                 </tr>
                 <tr *ngFor="let profession of professions" >
                   <td style="padding: 10px;">{{profession.name}}</td>
+                  <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteProfession(profession.id)" style="font-weight: bold; color: red;">x</span></td>
                 </tr>
               </table>
         </div>
 
 
-        <div *ngIf="!displayProfession" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 10px">
+        <div *ngIf="!displayProfession && !displayRGPD" style="width:1000px; margin:auto; background-color: white; padding: 30px 40px 40px 40px; margin-top: 10px">
             <div style="margin-bottom: 15px;">
                 <h2 style="text-decoration: underline;">Liste des règles RGPD</h2>
             </div>
@@ -55,18 +57,20 @@
                   <th style="padding: 10px;">Intitulé</th>
                   <th style="padding: 10px;">Catégorie</th>
                   <th style="padding: 10px;">Profession</th>
+                  <th style="padding: 10px;">Actions</th>
                 </tr>
                 <tr>
                   <td style="padding: 10px;">Changer de mot de passe tout les 15 jours</td>
                   <td style="padding: 10px;">6</td>
                   <td style="padding: 10px;">Docteur</td>
+                  <td style="padding: 10px; text-align: center; cursor: pointer;"><span (click)="deleteProfession(profession.id)" style="font-weight: bold; color: red;">x</span></td>
                 </tr>
               </table>
         </div>
 
 
 
-        <div *ngIf="displayProfession" style="width:1000px; margin:auto; margin-top: 0px; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
+        <div *ngIf="displayProfession && !displayRGPD" style="width:1000px; margin:auto; margin-top: 0px; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
 
             <div style="margin-top: 30px;">
                 <div style="display: inline-block;">
@@ -88,6 +92,72 @@
                     <div class="wrap-input100 validate-input">
                         <input class="input100" type="text" [(ngModel)]="nameProfession" placeholder="Nom">
                         <span class="focus-input100"></span>
+                    </div>
+                </div>
+
+               
+            </div>
+                      
+        </div>
+
+
+        <div *ngIf="!displayProfession && displayRGPD" style="width:1000px; margin:auto; margin-top: 0px; background-color: white; padding: 10px 40px 40px 40px; margin-bottom: 10px">
+
+            <div style="margin-top: 30px;">
+                <div style="display: inline-block;">
+                    <h1>Règles RGPD</h1>
+                    <p>Ajouter une nouvelle règle RGPD</p>
+                </div>
+                
+                <div style="display: inline-block; float: right; margin-top: 30px">
+                    <button  style="width: 150px;" class="login100-form-btn" (click)="saveProfession()">
+                        Sauvegarder
+                    </button>
+                    <br>
+                    <button  style="width: 150px; background: #ff2626 !important;" class="login100-form-btn" (click)="cancelEverything()">
+                        Annuler
+                    </button>
+                </div>
+
+                <div style="margin-top: 20px; width: 460px">
+                    <div class="wrap-input100 validate-input">
+                        <input class="input100" type="text" [(ngModel)]="nameProfession" placeholder="Titre">
+                        <span class="focus-input100"></span>
+                    </div>
+                </div>
+                <br>
+                <label>Choisir une profession :</label>
+                <div style="margin-top: 20px; width: 50%;">
+                    <div class="wrap-input100 validate-input">
+                        <select style="    width: 460px;
+                        background-color: #e6e6e6;
+                        color: #999999;;
+                        padding: 16px;
+                        font-size: 16px;
+                        border: none;
+                        cursor: pointer;
+                        border-radius: 32px;" id="id_company" name="id_company" class="form-control custom-select" [ngModel]="rgpdAdd.id_profession">
+                            <option></option>
+                            <option *ngFor="let profession of professions" [ngValue]="profession.id">{{profession.name}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <label>Choisir une catégorie :</label>
+                <div style="margin-top: 20px; width: 50%;">
+                    <div class="wrap-input100 validate-input">
+                        <select style="    width: 460px;
+                        background-color: #e6e6e6;
+                        color: #999999;;
+                        padding: 16px;
+                        font-size: 16px;
+                        border: none;
+                        cursor: pointer;
+                        border-radius: 32px;" id="id_company" name="id_company" class="form-control custom-select" [ngModel]="rgpdAdd.id_categorie">
+                            <option></option>
+                            <option *ngFor="let categorie of categories" [ngValue]="categorie">{{categorie}}</option>
+                        </select>
                     </div>
                 </div>
 
