@@ -1,5 +1,5 @@
 #!bin/sh
-ssh -T ubuntu@15.236.91.165 <<EOF
+ssh ubuntu@15.236.91.165  -o StrictHostKeyChecking=no<<EOF
 cd ~/rgpd_front
 sudo -s
 git pull origin master
