@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RgpdService } from 'src/app/services/rgpd.service';
-
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -25,7 +25,8 @@ export class HomeComponent implements OnInit {
   constructor(
       private router: Router,
       private professionService: ProfessionService,
-      private rgpdService: RgpdService
+      private rgpdService: RgpdService,
+      private toastr: ToastrService
   ) {
   }
 
@@ -84,6 +85,7 @@ export class HomeComponent implements OnInit {
   deleteProfession(id) {
     this.professionService.delete(id).subscribe(
         async (response) => {
+          //this.toastr.success("Profession supprimée avec succés")
             this.professions = await this.professionService.getAll().toPromise();
         },
         (error) => {
