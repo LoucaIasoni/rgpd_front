@@ -7,7 +7,7 @@ git pull origin master
 
 npm audit fix --force
 npm run build
-rm -rf ../backrgpd/dist/*
-mv  build/* ../backrgpd/dist/
+rm -rf ../BackRgpd/dist/*
+mv  build/* ../BackRgpd/dist/
 exit
 EOF
